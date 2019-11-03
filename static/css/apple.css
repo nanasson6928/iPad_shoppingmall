@@ -1,0 +1,111 @@
+body {
+	background-color: #f7f7f7;
+	}
+
+
+	.container .card-deck {
+		padding-bottom: 70px;
+	}
+
+
+	.container-fluid {
+		margin: 0
+		padding: 0
+		height: auto;
+	}
+
+
+	.sec2 .card-title {
+	    font-size: 2.5rem;
+	    font-weight: 600;
+	    color: #666;
+	    border-top: 3px solid #666;
+	    padding-top: 10px;
+	}
+
+
+
+	.card-title {
+		letter-spacing: -0.03rem;
+	}
+
+
+
+	.h5 {
+	    display: block;
+	    font-size: 0.83em;
+	    margin-block-start: 1.67em;
+	    margin-block-end: 1.67em;
+	    margin-inline-start: 0px;
+	    margin-inline-end: 0px;
+	    font-weight: bold;
+	}
+
+	.sec2 h5 {
+		text-align: center;
+	}
+
+	.card-body {
+		padding : 16px;
+	}
+
+
+	.div {
+		display: block;
+	}
+
+
+	.form-group {
+		margin-bottom: 1rem;
+	}
+
+
+	
+	.lable {
+		display: inline-block;
+	}
+
+	.form {
+		display: block;
+	}
+	
+
+	.sec2 form, .sec2 button {
+	    width: 480px;
+	    margin-left: auto;
+	    margin-right: auto;
+	    margin-top: 30px;
+	}
+	
+
+
+	.col-form-label {
+	    padding-top: calc(.375rem + 1px);
+	    padding-bottom: calc(.375rem + 1px);
+	    margin-bottom: 0;
+	    font-size: inherit;
+	    line-height: 1.5;
+	}
+
+
+
+	.col-sm-9 {
+		position: relative;
+	    width: 100%;
+	    min-height: 1px;
+	    padding-right: 15px;
+	    padding-left: 15px;
+
+	}
+
+
+	.sec2 button {
+	    background-color: #666;
+		font-size: 1.3rem;
+		border: none;
+		padding: 10px 0;
+		margin-bottom: 70px;
+	}
+
+
+	

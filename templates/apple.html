@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>ipad-pro</title>
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/apple.css')}}">
+    <!-- google font -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- javascript -->
+    <script type="text/javascript">
+
+    // 주문하기 API
+    function order() {
+
+        // 주문자 성함
+        let name = $('#order_name').val();
+        let count = $('#order_count').val();
+        let address = $('#order_address').val();
+        let phone = $('#order_phone').val();
+        let item = "iPad";
+
+        //Ajax 통신하기
+        $.ajax({
+            type: "POST", // POST 방식으로 요청하겠다.
+            url: "http://spartacodingclub.shop/order", // /post라는 url에 요청하겠다.
+            data: { name_give:name, count_give:count, address_give: address, phone_give: phone, item_give: item }, // 데이터를 주는 방법
+            success: function(response) { // 성공하면
+                if (response['result'] == 'success') {
+                    alert('주문 완료!');
+                    window.location.reload();
+                } else {
+                    alert('서버 오류');
+                }
+            }
+        })
+    }
+
+    // javascript 로딩 후 실행
+    $(document).ready(function() {
+      $('#orders-box').html('');
+        listing();
+    });
+
+    // 주문 가져오기 API
+    function listing() {
+      // orders를 돌면서, 하나씩 출력해봅니다.
+        $.ajax({
+            type: "GET",
+            url: "http://spartacodingclub.shop/order?item_give=iPad",
+            data: {},
+            success: function(response) {
+                if (response['result'] == 'success') {
+                  let orders = response['orders'];
+                  for (let i = 0; i < orders.length; i++) {
+                    // make_card함수를 ajax에 연결하기
+                    make_card(orders[i]['item'],orders[i]['name'],orders[i]['count'],orders[i]['address'],orders[i]['phone'])
+                  }
+                } else {
+                    console.log('실패')
+                }
+            }
+        })
+    }
+
+    // order 내용을 리스트로 만들어주는 함수 생성
+    function make_card(item,name,count,address,phone) {
+      let temp_html = '<tr>\
+            <td>'+item+'</td>\
+            <td>'+name+'</td>\
+            <td>'+count+'</td>\
+            <td>'+address+'</td>\
+            <td>'+phone+'</td>\
+          </tr>';
+        $('#orders-box').append(temp_html);
+    }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="../static/images/Apple_logo_grey.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            iPad
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <section class="container-fluid sec1">
+        <div class="container">
+            <div class="card-deck">
+                <div class="card">
+                    <img class="card-img-top" src="../static/images/ipad-pro-page.JPG" alt="Card image cap">
+                    <div class="card-body">
+                        <p>당신의 능력, iPad Pro로 커지다.</p>
+                        <h5 class="card-title">iPad-pro 11</h5>
+                        <p class="card-text">999,000원부터 </p>
+                        <hr class="my-4">
+                        <p class="card-text-body">iPad와 함께라면 거의 모든 일이 믿을 수 없을 만큼 손쉽게, 마법처럼 놀라운 방식으로 이루어집니다. 동영상 만들기, Keynote 실력 발휘하기, 종이 없는 환경 만들기, 바로바로 메모 작성하기 등 가능성은 그야말로 무궁무진하죠. 여기 그 방법을 익히는 데 도움이 될 몇 편의 짧은 동영상을 준비했습니다. 모든 동영상은 iPad Pro에서 디자인, 촬영, 편집되었습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container-fulid sec2">
+        <div class="container">
+            <div class="card-body">
+                <h5><span class="card-title">주문하기</span></h5>
+                <form>
+                    <div class="form-group row">
+                        <label for="inputName" class="col-sm-3 col-form-label">주문자 성함</label>
+                        <div class="col-sm-9">
+                            <input id="order_name" type="text" class="form-control" placeholder="이름을 입력하세요">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputSelect" class="col-sm-3 col-form-label">수량</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="order_count">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">주소</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="order_address" placeholder="서울시 서초구 강남대로">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">전화번호</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="order_phone" placeholder="010-1234-5678">
+                        </div>
+                    </div>
+                    <div class="order">
+                    <button onclick="order()" type="submit" class="btn btn-dark">주문하기</button>
+                    </div>
+                </form>
+            </div>
+            <div class="orders">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">상품명</th>
+                            <th scope="col">이름</th>
+                            <th scope="col">수량</th>
+                            <th scope="col">주소</th>
+                            <th scope="col">전화번호</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-box">
+                        <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
